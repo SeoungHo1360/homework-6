@@ -1,0 +1,26 @@
+from collections import deque
+
+def find_unfallen_times(prices):
+    n = len(prices)
+    result = [0] * n
+    stack = deque()
+
+    for i in range(n):
+        while stack and prices[stack[-1]] > prices[i]:
+            j = stack.pop()
+            result[j] = i - j
+        stack.append(i)
+
+    while stack:
+        j = stack.pop()
+        result[j] = n - 1 - j
+
+    return result
+
+if __name__ == "__main__":
+    prices = [1000, 2000, 3000, 2000, 3000]
+    result = find_unfallen_times(prices)
+    print("prices")
+    print(prices)
+    print("result")
+    print(result)

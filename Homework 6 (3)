@@ -1,0 +1,18 @@
+from collections import Counter
+
+with open("06 file01.txt", "r") as file1:
+    text1 = file1.read().lower()
+
+with open("06 file02.txt", "r") as file2:
+    text2 = file2.read().lower()
+
+word_counts1 = Counter(text1.split())
+word_counts2 = Counter(text2.split())
+
+common_words = set(word_counts1.keys()) & set(word_counts2.keys())
+
+print("공통된 단어와 각 파일에서의 빈도:")
+for word in common_words:
+    count1 = word_counts1[word]
+    count2 = word_counts2[word]
+    print(f"'{word}': 파일1 - {count1}, 파일2 - {count2}")
